@@ -1,0 +1,2 @@
+# django
+sample django projects
