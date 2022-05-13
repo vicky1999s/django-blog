@@ -1,2 +1,2 @@
 # django
-sample django projects
+django blog-app
