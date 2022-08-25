@@ -2,7 +2,7 @@
 <h1>Posts by {{view.kwargs.username}} ({{page_obj.paginator.count}}) </h1>
 {% for post in posts %}
 <article class="media content-section">
-    <img class="rounded-circle article-img" src="{{post.author.profile.image.url}}" alt="...">
+    <img class="rounded-circle article-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi1w8yH2ByuFd22laS-H18DwU4opeldOlie9km99bFwQ&s" alt="...">
     <div class="media-body">
         <div class="article-metadata">
             <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
