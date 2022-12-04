@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  mysql-db:
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    build:
+      context: .
+      dockerfile: docker/mysql/Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      MYSQL_DATABASE: blogapp
+      MYSQL_USER: vicky
+      MYSQL_ROOT_PASSWORD: Vicky@1999
+    ports:
+      - "3306:3306"
+
+  backend:
+    build:
+      context: .
+      dockerfile: docker/django/Dockerfile
+      network: host
+    env_file: .env
+    restart: always
+    depends_on:
+      - mysql-db
+    working_dir: "/app/mysql_example"
+    expose:
+      - 8000
+    ports:
+      - "8000:8000"
+    command: >
+      sh -c "python /app/manage.py migrate &&
+             python /app/manage.py runserver 0.0.0.0:8000"
+
+volumes:
+  mysql_data:

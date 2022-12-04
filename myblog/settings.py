@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from optparse import Values
 from pathlib import Path
 import os
 import django_heroku
@@ -29,7 +28,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 #DEBUG = os.environ.get('DEBUG_VALUE') == 'True'
 DEBUG = True
 
-ALLOWED_HOSTS = ['djangoblogvicky.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -81,16 +80,13 @@ WSGI_APPLICATION = 'myblog.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'myblog',
-    #     'USER': 'vicky',
-    #     'PASSWORD': 'Vicky@1999',
-    #     'HOST': 'localhost'
-    # }
-     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ.get('MYSQL_DATABASE', 'mysql-db'),
+        'USER': os.environ.get('MYSQL_USER', 'mysql-user'),
+        'PASSWORD': os.environ.get('MYSQL_PASSWORD', 'mysql-password'),
+        'HOST': os.environ.get('MYSQL_DATABASE_HOST', 'db'),
+        'PORT': os.environ.get('MYSQL_DATABASE_PORT', 3306),
     }
 }
 
