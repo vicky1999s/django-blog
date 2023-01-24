@@ -10,8 +10,8 @@ services:
     env_file: .env
     environment:
       MYSQL_DATABASE: blogapp
-      MYSQL_USER: vicky
-      MYSQL_ROOT_PASSWORD: Vicky@1999
+      MYSQL_USER: abc
+      MYSQL_ROOT_PASSWORD: abc
     ports:
       - "3306:3306"
 
